@@ -8,6 +8,9 @@
 		<div class="row p-2"><a href="login.do" class="nav-link px-3"><span class="text-center">Login</span></a></div>
 		<div class="row p-2"><a href="memberRegister.do" class="nav-link px-3"><span class="text-center">Register</span></a></div>
 	</c:when>
+	<c:otherwise>
+		<div class="row p-2"><a href="boardlist.board" class="nav-link px-3"><span class="text-center">Board</span></a></div>
+	</c:otherwise>
 </c:choose>
 
 <c:choose>

@@ -20,8 +20,8 @@ public class BoardListService implements Action {
 		
 		boardList = dao.getBoardList();
 		
-		request.setAttribute("memberList", boardList);
-		request.setAttribute("pagePath", "/WEB-INF/views/board.jsp");
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("pagePath", "/WEB-INF/views/boardlist.jsp");
   
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
