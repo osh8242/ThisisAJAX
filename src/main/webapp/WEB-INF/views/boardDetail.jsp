@@ -165,21 +165,10 @@
 	<h5>댓글존</h5>
 	<input type="text" id="commentTxt" name="commentTxt" placeholder="댓글을 입력해주세용">
 	<input type="button" id="submit" value="댓글입력">
-	<table class="table" id="comment_table">
-		<c:set var="commentlist" value="${requestScope.commentlist}"></c:set>
-		<c:forEach var="comment" items="${commentlist}">
-			<tr>
-	            <td>${comment.boardSeq}</td>
-	            <td>${comment.seq}</td>
-	            <td><input type="text" class="form-control" id="content" name="content" value="${comment.content}"></td>
-	            <td><input type="button" class="btn update" value="수정" onclick=""></td>
-	            <td><input type="button" class="btn delete" value="삭제"></td>
-           </tr>
-		</c:forEach>
+	<table class="table" id="comment_table">		
 	</table>
 </form>
 
 </body>
-
 
 </html>
