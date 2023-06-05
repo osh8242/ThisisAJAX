@@ -9,17 +9,7 @@
 	String board_seq = request.getParameter("board_seq");
 	//System.out.println(bbsSeq + " / " + comment);
 	
-	CommentDao dao = dao.getCommentsBySeq(board_seq);
-
-	//덧글등록
-	dao.addComment(comment);
-	List<CommentVO> commentlist = dao.getCommentList(bbsSeq);
-	
-	//JSON 데이터
-	JSONArray jsonarray = JSONArray.fromObject(commentlist);
-	//JSON 날짜 형식 (DATE 형식 안되요 ....)
 %>
-<%=jsonarray %>
 
 
 

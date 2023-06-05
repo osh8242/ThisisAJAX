@@ -48,6 +48,7 @@ public class boardController extends HttpServlet {
 
 		if (urlcommand.equals("/boardlist.board")) {
 			// 게시판 리스트
+			System.out.println("보드리스트 쩜 보드");
 			action = new BoardListService();
 			forward = action.execute(request, response);
 

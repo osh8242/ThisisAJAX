@@ -29,7 +29,7 @@ public class BoardDao {
 
 				while(rs.next()) {
 					Board b = Board.builder()
-									.seq(rs.getString("seq"))
+									.seq(rs.getInt("seq"))
 									.title(rs.getString("title"))
 									.content(rs.getString("content"))
 									.regdate(rs.getString("regdate"))
@@ -76,7 +76,7 @@ public class BoardDao {
 
 				if(rs.next()) {
 					b = Board.builder()
-									.seq(rs.getString("seq"))
+									.seq(rs.getInt("seq"))
 									.title(rs.getString("title"))
 									.content(rs.getString("content"))
 									.regdate(rs.getString("regdate"))
