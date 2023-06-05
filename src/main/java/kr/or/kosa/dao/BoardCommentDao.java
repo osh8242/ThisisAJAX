@@ -21,7 +21,7 @@ public class BoardCommentDao {
 			
 			try {
 				conn = ConnectionHelper.getConnection("oracle");
-				String sql="select board_seq,seq,content from board_comment where board_seq = ?";
+				String sql="select board_seq,seq,content from board_comment where board_seq = ?order by seq desc ";
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1,seq);
@@ -60,7 +60,7 @@ public class BoardCommentDao {
 		
 		
 		//상세조회
-		public Board getBoard(String seq){
+		public Board getBoardCommnet(String seq){
 			
 			Board b = null;
 			Connection conn = null;
@@ -68,7 +68,7 @@ public class BoardCommentDao {
 			
 			try {
 				conn = ConnectionHelper.getConnection("oracle");
-				String sql="select seq,title,content,regdate,hit from board where seq=?";
+				String sql="select seq,title,content,regdate,hit from board where seq=? ";
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1,seq);
@@ -77,7 +77,7 @@ public class BoardCommentDao {
 				
 				if(rs.next()) {
 					b = Board.builder()
-									.seq(rs.getString("seq"))
+									.seq(rs.getInt("seq"))
 									.title(rs.getString("title"))
 									.content(rs.getString("content"))
 									.regdate(rs.getString("regdate"))
@@ -101,6 +101,90 @@ public class BoardCommentDao {
 			}
 			
 			return b;
+		}
+		
+		public int deleteComment(String board_seq, String seq){
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				conn = ConnectionHelper.getConnection("oracle");
+				String sql="delete from board_comment where board_seq=? and seq=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, board_seq);
+				pstmt.setString(2, seq);
+				int result = pstmt.executeUpdate();
+				return result;
+					
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.getStackTrace();
+				
+			}finally {
+				ConnectionHelper.close(pstmt);
+				ConnectionHelper.close(conn);//반환
+			}
+			
+			return -1;
+		}	
+		
+		public int insertComment(BoardComment comment){
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				conn = ConnectionHelper.getConnection("oracle");
+				String sql="insert into board_comment(board_seq, seq, content) values(?, commentseq.nextval, ?)";;
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, comment.getBoardSeq());
+				pstmt.setString(2, comment.getContent());
+				
+				int result = pstmt.executeUpdate();
+				return result;
+					
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.getStackTrace();
+				
+			}finally {
+				ConnectionHelper.close(pstmt);
+				ConnectionHelper.close(conn);//반환
+			}
+			
+			return -1;
+		}
+		
+		public int updateComment(BoardComment comment){
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				conn = ConnectionHelper.getConnection("oracle");
+				String sql="update board_comment set content = ? where board_seq =? and seq= ?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, comment.getContent());
+				pstmt.setString(2, comment.getBoardSeq());
+				pstmt.setString(3, comment.getSeq());
+				
+				int result = pstmt.executeUpdate();
+				return result;
+					
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.getStackTrace();
+				
+			}finally {
+				ConnectionHelper.close(pstmt);
+				ConnectionHelper.close(conn);//반환
+			}
+			
+			return -1;
 		}
 				
 }

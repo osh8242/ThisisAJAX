@@ -23,10 +23,10 @@ import kr.or.kosa.service.MvcLoginViewService;
 import kr.or.kosa.service.MvcLogoutViewService;
 
 @WebServlet("*.board")
-public class boardController extends HttpServlet {
+public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public boardController() {
+	public BoardController() {
 		super();
 	}
 
@@ -48,6 +48,7 @@ public class boardController extends HttpServlet {
 
 		if (urlcommand.equals("/boardlist.board")) {
 			// 게시판 리스트
+			System.out.println("보드리스트 쩜 보드");
 			action = new BoardListService();
 			forward = action.execute(request, response);
 
