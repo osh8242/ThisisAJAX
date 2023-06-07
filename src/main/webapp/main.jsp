@@ -13,9 +13,6 @@
 <title>Hello World</title>
 </head>
 <style>
-	.main {
-		min-height : 80vh;
-	}
     .footer {
         position: fixed;
         left: 0;
