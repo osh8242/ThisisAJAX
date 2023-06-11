@@ -37,6 +37,21 @@ CREATE TABLE board_comment (
 );
 insert into board_comment(board_seq, seq, content) values(1, commentseq.nextval, '여러분 저 저번달에 3억찍음 ㄷㄷ;');
 
+CREATE TABLE KoreaMember (
+  id VARCHAR2(50) PRIMARY KEY,
+  pwd VARCHAR2(50) NOT NULL,
+  name VARCHAR2(50) NOT NULL,
+  age NUMBER(3),
+  gender VARCHAR2(10),
+  email VARCHAR2(100),
+  ip VARCHAR2(20)
+);
+
+insert into koreamember(id,pwd,name) values('admin','1004','관리자');
+commit;
+
+
+
 ![image](https://github.com/osh8242/ThisisAJAX/assets/127957174/6282dade-1f80-46dd-8fc0-b50469ff14e2)
 
 
